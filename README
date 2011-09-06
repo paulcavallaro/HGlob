@@ -1,0 +1,34 @@
+-- HGlob --
+
+A simple glob matcher written in Haskell as a learning exercise
+
+-- Special Characters --
+?          - Matches any single character
+*          - Matches the empty string or any finite string
+[...]      - Matches a single character that is in the defined Character Class
+
+-- Character Classes --
+
+A character class is defined in square brackets [...]
+
+Inside a character class definition you can place characters that will be 
+members of the class. For example: [bar] will match 'b', 'a', or 'r'. You can
+negate the character class with a bang (!) like so: [!not] will match any 
+character that is not 'n', 'o', or 't'.
+
+-- Examples --
+
+"foo" `matchesPattern` "foo"
+=> True
+
+"foo" `matchesPattern` "fo?"
+=> True
+
+"bar" `matchesPattern` "[!f]ar"
+=> True
+
+"baz" `matchesPattern` "ba*"
+=> True
+
+"baz" `matchesPattern` "*[az][!z]"
+=> False
